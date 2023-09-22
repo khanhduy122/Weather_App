@@ -12,9 +12,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
-import com.example.appdemo.dialog.LoadingDialog;
 import com.example.appdemo.view.HomeActivity;
 import com.example.appdemo.databinding.ActivityMainBinding;
 import com.example.appdemo.model.WeatherCurrent;
@@ -32,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private double lat;
     private double lon;
     FusedLocationProviderClient fusedLocationClient;
-    private LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         setContentView(view);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        loadingDialog = new LoadingDialog(this);
         CheckPermissionsLocation();
 
         MainPresenter Mainpresenter = new MainPresenter(this, this);
@@ -99,13 +95,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
         Intent intent = new Intent(MainActivity.this, HomeActivity.class);
         intent.putExtra("weathercurent", weathercurent);
         startActivity(intent);
-        loadingDialog.dismiss();
     }
 
-    @Override
-    public void Loading() {
-        loadingDialog.show();
-    }
 
     @Override
     public void GetWeatherFail() {

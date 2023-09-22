@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background layer -->
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <!-- Set the background color with transparency -->
+            <solid android:color="#80000000"/> <!-- Here, 80 is the alpha (transparency) value -->
+        </shape>
+    </item>
+
+    <!-- Progress layer -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape android:shape="rectangle">
+                <!-- Set the progress color -->
+                <solid android:color="#FF0000"/> <!-- Replace with your desired progress color -->
+            </shape>
+        </clip>
+    </item>
+</layer-list>

@@ -29,7 +29,6 @@ public class MainPresenter {
     }
 
     public void CallApiGetWeatherCurrent(String Appid,  double lat, double lon){
-        Mainview.Loading();
         ApiGetWeatherCurrent.Apigetweathercurrent.Getweathercurrent(lat, lon, Appid).enqueue(new Callback<WeatherCurrent>() {
             @Override
             public void onResponse(Call<WeatherCurrent> call, Response<WeatherCurrent> response) {

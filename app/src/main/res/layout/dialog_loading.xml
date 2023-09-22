@@ -7,8 +7,7 @@
 
 
     <ProgressBar
-        android:progressDrawable="@color/transparent"
-        android:backgroundTint="@color/transparent"
+        android:progressDrawable="@drawable/layout_background_transperent"
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
