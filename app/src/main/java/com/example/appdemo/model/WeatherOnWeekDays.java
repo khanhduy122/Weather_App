@@ -1,4 +1,4 @@
-package com.example.appdemo;
+package com.example.appdemo.model;
 
 public class WeatherOnWeekDays {
     private int Temperature;
@@ -38,4 +38,3 @@ public class WeatherOnWeekDays {
 
 }
 
-enum WeekDaysEnum{Mon, Tue, Wed, Thu, Fri, Sat, Sun}

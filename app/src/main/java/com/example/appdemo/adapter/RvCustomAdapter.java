@@ -1,4 +1,4 @@
-package com.example.appdemo;
+package com.example.appdemo.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.example.appdemo.R;
+import com.example.appdemo.model.WeatherOnWeekDays;
 
 public class RvCustomAdapter extends RecyclerView.Adapter<RvCustomAdapter.ViewHolder> {
 
@@ -45,15 +46,6 @@ public class RvCustomAdapter extends RecyclerView.Adapter<RvCustomAdapter.ViewHo
         holder.Tvtemperature.setText(Weatheronweekdays[position].getTemperature() + "°C");
         holder.Ivweather.setImageResource((Weatheronweekdays[position].getImgweather()));
         holder.TvweekDays.setText(Weatheronweekdays[position].getWeekDays().toString());
-//        switch (Weatheronweekdays[position].getWeekDays()){
-//            case Mon:  holder.TvweekDays.setText("Mon");
-//            case Tue:  holder.TvweekDays.setText("Tue");
-//            case Wed:  holder.TvweekDays.setText("Web");
-//            case Thu:  holder.TvweekDays.setText("Thu");
-//            case Fri:  holder.TvweekDays.setText("Fri");
-//            case Sat:  holder.TvweekDays.setText("Sat");
-//            case Sun:  holder.TvweekDays.setText("Sun");
-//        }
     }
 
     @Override

@@ -7,18 +7,35 @@
     android:orientation="vertical"
     android:weightSum="100"
     android:background="@drawable/layout_backgroud"
-    tools:context=".DetailActivity">
+    tools:context=".view.DetailActivity">
 
 
-    <TextView
-        android:layout_weight="20"
-        android:layout_gravity="center"
+    <LinearLayout
         android:gravity="center"
+        android:layout_weight="20"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:text="North America\nMax: 24°   Min:18°" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="North America"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/tvCelsiusMaxMin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Max: 24°   Min:18°"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_weight="30"
@@ -140,6 +157,7 @@
                 android:textSize="14dp" />
 
             <TextView
+                android:id="@+id/tvSunrise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -148,6 +166,7 @@
                 android:textSize="20dp" />
 
             <TextView
+                android:id="@+id/tvSunset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

@@ -7,7 +7,7 @@
     android:weightSum="100"
     android:orientation="vertical"
     android:background="@drawable/layout_backgroud"
-    tools:context=".MainActivity">
+    tools:context=".view.main.MainActivity">
 
     <ImageView
         android:layout_weight="50"
