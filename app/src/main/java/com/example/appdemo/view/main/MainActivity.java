@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 public void onSuccess(Location location) {
                     lat = location.getLatitude();
                     lon = location.getLongitude();
+                    Log.d("aaa", String.valueOf(lat) + " " + String.valueOf(lon));
                 }
             });
         }
@@ -82,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
                         public void onSuccess(Location location) {
                             lat = location.getLatitude();
                             lon = location.getLongitude();
+
+                            Log.d("aaa", String.valueOf(lat) + " " + String.valueOf(lon));
                         }
                     });
                 }

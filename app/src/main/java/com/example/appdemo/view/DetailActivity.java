@@ -56,7 +56,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     String ConvertSunRiseSunset(long millisecondsSinceEpoch ){
-        Date date = new Date(millisecondsSinceEpoch );
+        Date date = new Date(millisecondsSinceEpoch * 1000);
         SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
         return formatter.format(date);
     }
