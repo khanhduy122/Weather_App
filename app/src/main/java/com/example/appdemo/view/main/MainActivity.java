@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.appdemo.dialog.DiaLogErro;
+import com.example.appdemo.dialog.LoadingDialog;
 import com.example.appdemo.view.HomeActivity;
 import com.example.appdemo.databinding.ActivityMainBinding;
 import com.example.appdemo.model.WeatherCurrent;
@@ -29,7 +31,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private final int REQUEST_CODE = 1234;
     private double lat;
     private double lon;
-    FusedLocationProviderClient fusedLocationClient;
+    private FusedLocationProviderClient fusedLocationClient;
+    private MainPresenter Mainpresenter;
+    private LoadingDialog Loadingdialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +44,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         CheckPermissionsLocation();
-
-        MainPresenter Mainpresenter = new MainPresenter(this, this);
+        Loadingdialog = new LoadingDialog();
+        Mainpresenter = new MainPresenter(this, this);
 
         Binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 public void onSuccess(Location location) {
                     lat = location.getLatitude();
                     lon = location.getLongitude();
-                    Log.d("aaa", String.valueOf(lat) + " " + String.valueOf(lon));
                 }
             });
         }
@@ -79,8 +82,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
                         public void onSuccess(Location location) {
                             lat = location.getLatitude();
                             lon = location.getLongitude();
-
-                            Log.d("aaa", String.valueOf(lat) + " " + String.valueOf(lon));
                         }
                     });
                 }
@@ -94,11 +95,24 @@ public class MainActivity extends AppCompatActivity implements MainView {
     public void GetWeatherSucces(WeatherCurrent weathercurent) {
         Intent intent = new Intent(MainActivity.this, HomeActivity.class);
         intent.putExtra("weathercurent", weathercurent);
+        Loadingdialog.dismiss();
         startActivity(intent);
     }
 
 
     @Override
     public void GetWeatherFail() {
+        Loadingdialog.dismiss();
+        DiaLogErro.ShowDialogErro(this);
+    }
+
+    @Override
+    public void NoInternetErro() {
+        DiaLogErro.ShowDiaLogNoInternet(this);
+    }
+
+    @Override
+    public void Loading() {
+        Loadingdialog.show(getSupportFragmentManager(), "");
     }
 }

@@ -1,8 +1,11 @@
 package com.example.appdemo.view.main;
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
@@ -29,19 +32,35 @@ public class MainPresenter {
     }
 
     public void CallApiGetWeatherCurrent(String Appid,  double lat, double lon){
-        ApiGetWeatherCurrent.Apigetweathercurrent.Getweathercurrent(lat, lon, Appid).enqueue(new Callback<WeatherCurrent>() {
-            @Override
-            public void onResponse(Call<WeatherCurrent> call, Response<WeatherCurrent> response) {
-                if(response.isSuccessful()){
-                    Mainview.GetWeatherSucces(response.body());
+        if(CheckInternet()){
+            Mainview.Loading();
+            ApiGetWeatherCurrent.Apigetweathercurrent.Getweathercurrent(lat, lon, Appid).enqueue(new Callback<WeatherCurrent>() {
+                @Override
+                public void onResponse(Call<WeatherCurrent> call, Response<WeatherCurrent> response) {
+                    if(response.isSuccessful()){
+                        Mainview.GetWeatherSucces(response.body());
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<WeatherCurrent> call, Throwable t) {
-                Mainview.GetWeatherFail();
-            }
-        });
+                @Override
+                public void onFailure(Call<WeatherCurrent> call, Throwable t) {
+                    Mainview.GetWeatherFail();
+                }
+            });
+        }else {
+            Mainview.NoInternetErro();
+        }
+
     }
+
+    private boolean CheckInternet(){
+        ConnectivityManager Connectivitymanager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = Connectivitymanager.getActiveNetworkInfo();
+        if(networkInfo != null){
+            return networkInfo.isConnected();
+
+        }else return false;
+    }
+
 
 }
